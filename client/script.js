@@ -2,6 +2,7 @@
 //THE TEST SERVER IS RUNNING ON LOCALHOST:3000//
 ////////////////////////////////////////////////
 
+
 // PROBLEM 1
 /*
     In the index.html file in this folder there is a button with an id of 'say-hello-button'!
@@ -10,7 +11,7 @@
 */
 
 // CODE HERE
-
+let sayHelloButton = document.querySelector(`#say-hello-button`)
 
 // PROBLEM 2
 /*
@@ -20,7 +21,11 @@
 */
 
 // CODE HERE
+function buttonChange(event) {
+    sayHelloButton.classList.add(`button-black`)
+}
 
+sayHelloButton.addEventListener(`mouseover`, buttonChange)
 
 // PROBLEM 3
 /*
@@ -33,6 +38,11 @@
 
 // CODE HERE
 
+function buttonChangeBack(event) {
+    sayHelloButton.classList.remove(`button-black`)
+}
+
+sayHelloButton.addEventListener(`mouseout`, buttonChangeBack)
 
 // PROBLEM 4
 /*
@@ -45,15 +55,18 @@
 const sayHello = () => {
     axios.get('http://localhost:3000/say-hello').then((res) => {
         let helloText = document.getElementById('hello-text');
-        helloText.style.display = 'block';
-        helloText.style.backgroundColor = 'green';
+        helloText.style.display = 'flex';
+        helloText.style.justifyContent = `center`
+        helloText.style.fontFamily = `fantasy`
+        helloText.style.alignItems = `center`
+        helloText.style.backgroundColor = 'lightgray';
         helloText.textContent = res.data;
     })
 }
 // DO NOT EDIT FUNCTION
 
 // CODE HERE
-
+sayHelloButton.addEventListener(`click`, sayHello)
 
 // PROBLEM 5 
 /*
@@ -67,7 +80,11 @@ const sayHello = () => {
 */ 
 
 const ohMy = () => {
-    // YOUR CODE HERE
+    axios.get(`http://localhost:3000/animals`)
+    .then((res) => {
+        console.log(res.data)
+    })
+    .catch(err => console.log(err))
 }
 
 document.getElementById('animals-button').addEventListener('click', ohMy)
@@ -87,8 +104,21 @@ document.getElementById('animals-button').addEventListener('click', ohMy)
 */
 
 const repeatMyParam = () => {
-    //YOUR CODE HERE
+    let repeatText = document.getElementById(`repeat-text`)
+    axios.get(`http://localhost:3000/repeat/fun`)
+    .then((res) => {
+        repeatText.textContent = res.data
+        repeatText.style.display = `flex`
+        repeatText.style.textAlign = `center`
+        repeatText.style.fontFamily = `fantasy`
+        console.log(repeatText)
+    })
+
+    .catch(err => console.log(err))
 }
+
+let repeatButton = document.getElementById(`repeat-button`)
+repeatButton.addEventListener(`click`, repeatMyParam)
 
 // PROBLEM 7
 /*
@@ -111,8 +141,16 @@ const repeatMyParam = () => {
 */
 
 // CODE HERE
+function reqQuery(event) {
+    axios.get(`http://localhost:3000/query-test/?thingy`)
+    .then((res) => {
+        console.log(res.data)
+    })
+}
 
 
+let qryBtn = document.getElementById(`query-button`)
+qryBtn.addEventListener(`click`, reqQuery)
 
 ////////////////
 //INTERMEDIATE//
@@ -164,3 +202,7 @@ const repeatMyParam = () => {
 */
 
 // CODE HERE 
+
+function createFood {
+    
+}
